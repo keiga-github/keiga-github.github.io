@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Server</title>
+    <meta charset="utf-8">
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" /> 
+</head>
+
+<style>
+#id_show_json{
+    background-color: #4ed5e7;
+}
+
+
+</style>
+
+<script>
+    
+    var g_socket;
+    
+    window.onload = function () {
+        //g_socket = new WebSocket("ws://192.168.2.24:8888/echo");
+        //g_socket = new WebSocket("ws://myserver.andyjhang.xyz:8888/echo");
+        g_socket = new WebSocket("wss://demo-rsm.herokuapp.com/echo");
+        g_socket.onopen = function (evt) {
+            console.log("Connected");
+        }
+        g_socket.onmessage = function (evt) {
+            var d = JSON.parse(evt.data)
+            document.getElementById("id_show_json").innerHTML = JSON.stringify(JSON.parse(evt.data), undefined, 2);
+            console.log(d)
+            var method = d.method;
+            var errorcode = d.errorcode
+            switch(method){
+                case "GatewayInfo":{
+                    var role = d.role
+                    g_gwList = d.parameter
+                    ui_clear_combobox()
+                    ui_updata_combobox();
+                    console.log(g_gwList)
+                        
+                    break
+                }
+                default:{
+                    break;
+                }
+            }
+
+        }
+        g_socket.onclose = function (evt) {
+            console.log("disconnected")
+        }
+        g_socket.onerror = function (evt) {
+            console.log("error")
+        }
+        g_socket.onload = function (ent) {
+            console.log("load")
+        }
+     
+    }
+    
+    //command
+    function send_updateGatewayInfo1(){
+        var sendData = { 
+            "role": "gateway",
+            "method": "updateGatewayInfo", 
+            "parameter": { 
+                "gname": "gateway1",
+                "deviceList":[
+                {  "dname": "Device1",    "dmodule": "ed005",    "ntxch":0,     "nrxch":2, "volume":75, "mute":1},      
+                {  "dname": "Device2",    "dmodule": "ed005",    "ntxch":0,     "nrxch":2, "volume":75, "mute":0},
+                {  "dname": "Device3",    "dmodule": "ed004",    "ntxch":0,     "nrxch":2, "volume":50, "mute":1},
+                {  "dname": "Device4",    "dmodule": "ed004",    "ntxch":0,     "nrxch":2, "volume":50, "mute":0},
+                {  "dname": "K3",          "dmodule": "srcDev",   "ntxch":2,     "nrxch":2, "volume":25, "mute":0}
+                ]
+            }
+        };
+
+        g_socket.send(JSON.stringify(sendData))
+    }
+    function send_updateGatewayInfo2(){
+        var sendData = { 
+            "role": "gateway",
+            "method": "updateGatewayInfo", 
+            "parameter": { 
+                "gname": "gateway2",
+                "deviceList":[
+                {  "dname": "Device11",    "dmodule": "ed005",    "ntxch":0,     "nrxch":2, "volume":10, "mute":1},      
+                {  "dname": "Device12",    "dmodule": "ed005",    "ntxch":0,     "nrxch":2, "volume":20, "mute":1},
+                {  "dname": "Device13",    "dmodule": "ed004",    "ntxch":0,     "nrxch":2, "volume":30, "mute":1},
+                {  "dname": "Device14",    "dmodule": "ed004",    "ntxch":0,     "nrxch":2, "volume":40, "mute":1},
+                {  "dname": "K3",          "dmodule": "srcDev",   "ntxch":2,     "nrxch":2, "volume":50, "mute":1}
+                ]
+            }
+        };
+
+        g_socket.send(JSON.stringify(sendData))
+    }
+
+    function onClicked_Update1(){
+        send_updateGatewayInfo1()
+    }
+    function onClicked_Update2(){
+       
+        send_updateGatewayInfo2()
+    }
+
+   
+</script>
+
+<body>
+    <div></div>
+    <div>
+        <h3>假Gateway1 <input type="button" value="update gateway1" onclick="onClicked_Update1()"></h3>
+        <h3>假Gateway2 <input type="button" value="update gateway2" onclick="onClicked_Update2()"></h3>
+        <!-- <input type="submit" value="get projectList" onclick="getProjectList()"> -->
+    </div>
+    <div>
+        <pre id="id_show_json"></pre>
+    </div>
+</body>
+
+</html>
