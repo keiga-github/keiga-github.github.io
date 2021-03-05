@@ -20,9 +20,9 @@
         Choose Device:
         <div> 
             <span> 
-                Gateway: <select id="id_cb_gatewayinfo" onchange="onChosen_Gateway()"></select> 
+                Gateway: <select id="id_cb_gatewayinfo" class="css_select" onchange="onChosen_Gateway()"></select> 
                 &thinsp; &thinsp;  &thinsp; &thinsp;  
-                TargetDevice: <select id="id_cb_rxdev" onchange="onChosen_Rxdev()"></select>
+                TargetDevice: <select id="id_cb_rxdev" class="css_select" onchange="onChosen_Rxdev()"></select>
             </span>
         </div>
     </div>
@@ -40,20 +40,20 @@
         <div>
             <span>
                 RxCh:
-                <select id="id_cb_rxch"></select>
+                <select id="id_cb_rxch" class="css_select"></select>
                 &thinsp; &thinsp;  &thinsp; &thinsp; 
                 TxDev:
-                <select id="id_cb_txdev" onchange="onChosen_Txdev()"></select>
+                <select id="id_cb_txdev" class="css_select" onchange="onChosen_Txdev()"></select>
                 TxCh:
-                <select id="id_cb_txch"></select>
+                <select id="id_cb_txch" class="css_select"></select>
             </span>
         </div>
         <div>
             <p>
                 <span>
-                    <input type="button" value="Subscribe" onclick="onClicked_Subscribe()">
+                    <input type="button" class="css_button" value="Subscribe" onclick="onClicked_Subscribe()">
                     &thinsp; &thinsp; &thinsp; &thinsp;
-                    <input type="button" value="Unsubscribe" onclick="onClicked_Unsubscribe()">
+                    <input type="button" class="css_button" value="Unsubscribe" onclick="onClicked_Unsubscribe()">
                 </span>
                 <div id="id_cv_subscribe"></div>
             </p>
