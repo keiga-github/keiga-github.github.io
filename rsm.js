@@ -64,9 +64,9 @@ window.onload = function () {
     
 
 
-    g_socket = new WebSocket("ws://192.168.2.24:8888/echo");
+    //g_socket = new WebSocket("ws://192.168.2.24:8888/echo");
     //g_socket = new WebSocket("ws://myserver.andyjhang.xyz:8888/echo");
-    //g_socket = new WebSocket("wss://demo-rsm.herokuapp.com/echo");
+    g_socket = new WebSocket("wss://demo-rsm.herokuapp.com/echo");
     //SerApi.init(g_socket);
     g_socket.onopen = function (evt) {
         console.log("Connected");
