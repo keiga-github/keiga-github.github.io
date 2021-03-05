@@ -38,7 +38,7 @@ input[type="checkbox"] {
 
 .slider {
     -webkit-appearance: none;
-    width: 300px;
+    width: 600px;
     height: 25px;
     background: #f7f3f3;
     outline: none;
