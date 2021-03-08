@@ -363,7 +363,7 @@ function send_getGatewayInfo(){
 }
 
 function send_subscribe(gname, txdev, txch, rxdev, rxch){
-    return
+    //return
     var sendData = { 
         "role": "user",
         "method": "subscribe", 
@@ -381,7 +381,7 @@ function send_subscribe(gname, txdev, txch, rxdev, rxch){
 }
 
 function send_setMaster(gname, rxdev, volume, mute){
-    return
+    //return
     var sendData = { 
         "role": "user",
         "method": "setMaster", 
