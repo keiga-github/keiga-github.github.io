@@ -37,10 +37,10 @@ window.onload = function () {
     g_socket.onopen = function (evt) {
         console.log("Connected");
         send_getGatewayInfo();
-          //Periodic to get GatewayInfo
-        //setInterval(function() {
-        //    send_getGatewayInfo();
-        //}, 5000);
+			//Periodic to get GatewayInfo
+			setInterval(function() {
+		    send_getGatewayInfo();
+        }, 5000);
     }
     g_socket.onmessage = function (evt) {
         //show data
